@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="226" pageHeight="540" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="84e43fb4-ab87-4a87-b825-06028b454a84">
+	<property name="ireport.zoom" value="2.5937424601000068"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="379"/>
+	<parameter name="invoiceno" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     product_details.`id` AS product_details_id,
+     product_details.`id product` AS product_details_id_product,
+     product_details.`name` AS product_details_name,
+     product_details.`quantity` AS product_details_quantity,
+     product_details.`total amount` AS product_details_total_amount,
+     product_invoice_details.`id` AS product_invoice_details_id,
+     product_invoice_details.`id invoice` AS product_invoice_details_id_invoice,
+     product_invoice_details.`id product details` AS product_invoice_details_id_product_details,
+     product_invoice_details.`total amount` AS product_invoice_details_total_amount
+FROM
+     `product details` product_details INNER JOIN `product invoice details` product_invoice_details ON product_details.`id` = product_invoice_details.`id product details` WHERE $P{invoiceno}]]>
+	</queryString>
+	<field name="product_details_id" class="java.lang.Integer"/>
+	<field name="product_details_id_product" class="java.lang.String"/>
+	<field name="product_details_name" class="java.lang.String"/>
+	<field name="product_details_quantity" class="java.lang.Integer"/>
+	<field name="product_details_total_amount" class="java.lang.Integer"/>
+	<field name="product_invoice_details_id" class="java.lang.Integer"/>
+	<field name="product_invoice_details_id_invoice" class="java.lang.Integer"/>
+	<field name="product_invoice_details_id_product_details" class="java.lang.Integer"/>
+	<field name="product_invoice_details_total_amount" class="java.lang.Integer"/>
+	<group name="HoaDon">
+		<groupFooter>
+			<band height="50">
+				<textField>
+					<reportElement x="150" y="15" width="30" height="20" uuid="810fc66c-94bf-4b61-ae3a-f7789a045263"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{product_invoice_details_total_amount}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="103" y="15" width="47" height="20" uuid="29c1bfab-6cd5-4b75-954c-b9c5408ac791"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Thành tiền:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="2" width="149" height="19" uuid="9979331d-c8e5-4d60-92f1-27872db43c93"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Shop 3 AE Sinh Dziên]]></text>
+			</staticText>
+			<image>
+				<reportElement x="23" y="22" width="141" height="44" uuid="587aeed8-7352-4592-9258-cd0b0ce31428"/>
+				<imageExpression><![CDATA["C:\\Data\\WorkSpace\\Java\\ProjectAtSchool\\HTQLCH\\src\\Images\\1200px-Stop_&_Shop_Logo.svg.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="186" height="13" uuid="ec993d14-d34c-4dbb-81a2-ee8116355ddb"/>
+				<text><![CDATA[**********************************************]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="21" width="85" height="16" uuid="2837e9c0-b66c-4ccb-9e89-2edff2a9b8bd"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HOÁ ĐƠN BÁN HÀNG]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="159" y="37" width="21" height="14" uuid="de49188d-7dda-4323-a118-07852ea691a3"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="37" width="36" height="14" uuid="ca069f00-d8c1-4929-a2a5-51d6f1faeafb"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="37" width="56" height="14" uuid="a33cae9f-6796-4933-8808-c47b0629cff9"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên sản phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="37" width="45" height="14" uuid="b91d6f50-41d4-4e90-a092-f3cc406aef1b"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã sản phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="4" width="45" height="16" uuid="f59e26f9-a5d4-4648-9435-4690cacd2108"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã hoá đơn:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="52" y="4" width="29" height="16" uuid="940cd5a4-2fbf-4e87-9ebd-09c4016c5279"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_invoice_details_id_invoice}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="57" width="186" height="1" uuid="f7063302-11e4-4d24-92ac-2a5445b340e8"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="4" width="45" height="33" uuid="a623fe16-49d0-453e-96ba-42181766e3a5"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_details_id_product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="4" width="56" height="33" uuid="add762dd-4fff-4b1a-986a-fae366a59cce"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_details_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="4" width="28" height="33" uuid="6d79f708-5fb0-4714-8bed-c7ab1007c377"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_details_total_amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="4" width="36" height="33" uuid="d9ef2b2f-3c62-4904-989b-e9fa1cd0c5d3"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_details_quantity}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="36" width="186" height="1" uuid="3a49c84e-1a16-429b-9985-4c0d0ccb5970"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="137" height="37" uuid="bcac8571-e912-43a6-a1d5-273776d2dfb0"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[# Nếu quý khách có nhu cầu xuất hoá đơn đỏ, vui lòng liên hệ nhân viên chúng tôi trong ngày quý khách mua hàng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="37" width="137" height="20" uuid="00ba9f61-e588-436c-a9a2-c67bf84d5cb8"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[# Sản phẩm không tính thuế]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="57" width="137" height="10" uuid="22ba5c65-bd50-4560-84e5-1d8e0f843435"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[# Sản phẩm đang có chương trình ưu đãi]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="31" y="12" width="119" height="20" uuid="55854104-c3fa-4c08-8855-cf4166504428"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Cảm ơn quý khách đã ủng hộ Shop Chúc quý khách một ngày tốt lành <3]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="7" width="186" height="1" uuid="19fa24b8-594e-42ae-9f85-bf3f7ea8f7ce"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

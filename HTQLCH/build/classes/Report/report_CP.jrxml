@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b7c05b8c-8d87-4dbd-9215-3b12be0c375c">
+	<property name="ireport.zoom" value="1.7715610000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="date" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     receiving_transaction.`id` AS receiving_transaction_id,
+     receiving_transaction.`id employee` AS receiving_transaction_id_employee,
+     receiving_transaction.`id distributor` AS receiving_transaction_id_distributor,
+     receiving_transaction.`total amount` AS receiving_transaction_total_amount,
+     receiving_transaction.`transaction date` AS receiving_transaction_transaction_date,
+     receiving_transaction.`note` AS receiving_transaction_note
+FROM
+     `receiving transaction` receiving_transaction WHERE receiving_transaction.`transaction date` LIKE $P{date}]]>
+	</queryString>
+	<field name="receiving_transaction_id" class="java.lang.Integer"/>
+	<field name="receiving_transaction_id_employee" class="java.lang.Integer"/>
+	<field name="receiving_transaction_id_distributor" class="java.lang.Integer"/>
+	<field name="receiving_transaction_total_amount" class="java.lang.Long"/>
+	<field name="receiving_transaction_transaction_date" class="java.sql.Date"/>
+	<field name="receiving_transaction_note" class="java.lang.String"/>
+	<variable name="SUM_TotalAmount" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{receiving_transaction_total_amount}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="101" y="20" width="379" height="33" uuid="4c849448-dfd9-4774-878f-dc5d1b30f694"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THỐNG KÊ CHI PHÍ NHẬP KHO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="62" y="9" width="100" height="20" uuid="85bb731d-e379-4b9b-938a-2207ad6fc8fa"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã phiếu nhập]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="9" width="100" height="20" uuid="db917b47-c681-48b4-9fc4-c429a5879010"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="9" width="100" height="20" uuid="048d35e7-c1a8-4346-9595-fc280dae0b96"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày lập phiếu]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="35" width="555" height="1" uuid="6015ffd5-735a-4af0-941b-d0387a9700be"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="82" y="0" width="100" height="20" uuid="d06d9135-fea9-49ae-a88d-2ccea6f16113"/>
+				<textFieldExpression><![CDATA[$F{receiving_transaction_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="100" height="20" uuid="ca3052b4-ff21-4981-aead-8c93183c9f4b"/>
+				<textFieldExpression><![CDATA[$F{receiving_transaction_total_amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="259" y="0" width="100" height="20" uuid="9c9200cc-f154-48db-9708-f995e625dc3f"/>
+				<textFieldExpression><![CDATA[$F{receiving_transaction_transaction_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="229" y="7" width="113" height="20" uuid="48d43d98-7828-4774-b709-8c7d42324820"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng chi phí:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="342" y="7" width="100" height="20" uuid="75eb25fb-430a-4c12-bd80-5a5a833b67f7"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUM_TotalAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="442" y="7" width="65" height="20" uuid="9ba581e6-a633-4746-ad38-2039f5b10e7e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VND]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

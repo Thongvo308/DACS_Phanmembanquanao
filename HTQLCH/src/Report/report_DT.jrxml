@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bc25672b-40ba-4111-8dd6-88ed4631986c">
+	<property name="ireport.zoom" value="1.7715610000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="date" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     invoice.`id` AS invoice_id,
+     invoice.`id customer` AS invoice_id_customer,
+     invoice.`id employee` AS invoice_id_employee,
+     invoice.`creation date` AS invoice_creation_date,
+     invoice.`total amount` AS invoice_total_amount,
+     invoice.`note` AS invoice_note
+FROM
+     `invoice` invoice WHERE invoice.`creation date` LIKE $P{date}]]>
+	</queryString>
+	<field name="invoice_id" class="java.lang.Integer"/>
+	<field name="invoice_id_customer" class="java.lang.Integer"/>
+	<field name="invoice_id_employee" class="java.lang.Integer"/>
+	<field name="invoice_creation_date" class="java.sql.Date"/>
+	<field name="invoice_total_amount" class="java.lang.Long"/>
+	<field name="invoice_note" class="java.lang.String"/>
+	<variable name="SUM_TotalAmount" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{invoice_total_amount}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="144" y="13" width="295" height="34" uuid="70463431-8552-4750-a640-60eccc54a635"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[THỐNG KÊ DOANH THU]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="40" y="14" width="100" height="20" uuid="618b7766-7e97-4765-b6b6-1d5d69dee667"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã hoá đơn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="14" width="100" height="20" uuid="6b18d822-3e60-4b45-bfd9-d3d179b6e77e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thành tiền]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="14" width="100" height="20" uuid="ad761e2a-9443-45ca-9d2e-912e8a173f16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày lập hoá đơn]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="43" width="555" height="1" uuid="3d18f0dd-1265-4bd2-94c3-bbb6f150dd03"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="53" y="0" width="100" height="20" uuid="d53bf4b2-3ada-4386-818a-411a5eeeb901"/>
+				<textFieldExpression><![CDATA[$F{invoice_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="0" width="100" height="20" uuid="3fe80c70-ecfb-4d57-ab69-235a2aee6746"/>
+				<textFieldExpression><![CDATA[$F{invoice_total_amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="100" height="20" uuid="2792caa3-a2c3-40bd-add4-fcc91f4e128c"/>
+				<textFieldExpression><![CDATA[$F{invoice_creation_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="197" y="12" width="131" height="20" uuid="68bfa266-9c4b-44f5-8890-c89d82a15fe9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng doanh thu:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="328" y="12" width="100" height="20" uuid="67df6add-0b9a-4b11-80e2-26c23e70e548"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUM_TotalAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="428" y="12" width="100" height="20" uuid="2704e27a-f9d0-4e29-9959-e5fecf551217"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VND]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
